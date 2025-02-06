@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface menuItemRepository extends JpaRepository<menuItem, Integer>{
 
+	boolean existsByName(String name);
+
 }
