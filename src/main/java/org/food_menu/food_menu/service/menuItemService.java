@@ -100,4 +100,21 @@ public class menuItemService {
         }
     }
 
+    public ResponseEntity<Object> getMenuItemByPrice(double price, double price1) {
+        List<menuItem> menu = repository.findByPriceBetween(price, price1);
+
+        if(menu.isEmpty()){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Item not found in Menu with the price range : "+price+" to "+price1);
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success","Menu Item Obtained Successfully");
+            map.put("Menu Items", menu);
+
+            return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }
+    }
+
 }

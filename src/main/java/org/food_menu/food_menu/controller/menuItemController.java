@@ -45,4 +45,9 @@ public class menuItemController {
     public ResponseEntity<Object> getMenuItemByCategory(@PathVariable String category){
         return service.getMenuItemByCategory(category);
     }
+
+    @GetMapping("/menuitems/minprice/{price}/maxprice/{price1}")
+    public ResponseEntity<Object> getMenuItemByPrice(@PathVariable double price, @PathVariable double price1){
+        return service.getMenuItemByPrice(price, price1);
+    }
 }

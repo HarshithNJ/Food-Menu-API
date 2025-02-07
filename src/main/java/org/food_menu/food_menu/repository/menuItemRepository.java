@@ -14,4 +14,6 @@ public interface menuItemRepository extends JpaRepository<menuItem, Integer>{
 
     List<menuItem> findByCategory(String category);
 
+    List<menuItem> findByPriceBetween(double price, double price2);
+
 }
