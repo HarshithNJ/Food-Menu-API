@@ -41,5 +41,8 @@ public class menuItemController {
         return service.getMenuItemByName(name);
     }
 
-    
+    @GetMapping("/menuItems/category/{category}")
+    public ResponseEntity<Object> getMenuItemByCategory(@PathVariable String category){
+        return service.getMenuItemByCategory(category);
+    }
 }
