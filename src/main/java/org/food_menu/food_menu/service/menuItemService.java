@@ -1,6 +1,7 @@
 package org.food_menu.food_menu.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.food_menu.food_menu.dto.menuItem;
@@ -35,6 +36,32 @@ public class menuItemService {
             map.put("Menu Items", item);
 
             return new ResponseEntity<Object>(map, HttpStatus.CREATED);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    public ResponseEntity<Object> getMenu() {
+        List<menuItem> menu = repository.findAll();
+
+        if(menu.isEmpty()){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Menu is empty");
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success","Menu Items Obtained Successfully");
+            map.put("Menu Items", menu);
+
+            return new ResponseEntity<Object>(map, HttpStatus.FOUND);
         }
     }
 
