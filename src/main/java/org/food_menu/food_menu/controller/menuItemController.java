@@ -1,5 +1,7 @@
 package org.food_menu.food_menu.controller;
 
+import java.util.List;
+
 import org.food_menu.food_menu.dto.menuItem;
 import org.food_menu.food_menu.service.menuItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,11 @@ public class menuItemController {
     @GetMapping("/menuItems")
     public ResponseEntity<Object> getMenuItem(){
         return service.getMenu();
+    }
+
+    @GetMapping("/menuItems/{name}")
+    public ResponseEntity<Object> getMenuItemByName(@PathVariable String name){
+        return service.getMenuItemByName(name);
     }
 
     

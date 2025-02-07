@@ -3,6 +3,7 @@ package org.food_menu.food_menu.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.food_menu.food_menu.dto.menuItem;
 import org.food_menu.food_menu.repository.menuItemRepository;
@@ -64,5 +65,24 @@ public class menuItemService {
             return new ResponseEntity<Object>(map, HttpStatus.FOUND);
         }
     }
+
+    public ResponseEntity<Object> getMenuItemByName(String name) {
+        Optional<menuItem> menu = repository.findByName(name);
+
+        if(menu.isPresent()){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success","Menu Item Obtained Successfully");
+            map.put("Menu Item", menu);
+
+            return new ResponseEntity<Object>(map, HttpStatus.FOUND);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Item not found in Menu with the name : "+name);
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    
 
 }
