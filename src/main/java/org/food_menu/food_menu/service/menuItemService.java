@@ -117,4 +117,32 @@ public class menuItemService {
         }
     }
 
+
+
+
+
+
+
+
+
+
+    public ResponseEntity<Object> deleteMenuItem(String name) {
+        Optional<menuItem> menu = repository.findByName(name);
+
+        if(menu.isPresent()){
+            repository.deleteById(menu.get().getId());
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Item deleted from Menu Successfully");
+            map.put("Menu Items", menu);
+
+            return new ResponseEntity<Object>(map, HttpStatus.OK);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Item not found in Menu with the name : "+name);
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

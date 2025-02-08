@@ -6,6 +6,7 @@ import org.food_menu.food_menu.dto.menuItem;
 import org.food_menu.food_menu.service.menuItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,5 +50,19 @@ public class menuItemController {
     @GetMapping("/menuitems/minprice/{price}/maxprice/{price1}")
     public ResponseEntity<Object> getMenuItemByPrice(@PathVariable double price, @PathVariable double price1){
         return service.getMenuItemByPrice(price, price1);
+    }
+
+
+
+
+
+
+
+
+
+    // To Delete a item from the menu
+    @DeleteMapping("/menuItems/{name}")
+    public ResponseEntity<Object> deleteMenuItem(@PathVariable String name){
+        return service.deleteMenuItem(name);
     }
 }
