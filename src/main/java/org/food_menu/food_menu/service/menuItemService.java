@@ -183,7 +183,7 @@ public class menuItemService {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("error", "Item not found in Menu with the name : "+name);
 
-            return new ResponseEntity<Object>(map, HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
         }
     }
 
