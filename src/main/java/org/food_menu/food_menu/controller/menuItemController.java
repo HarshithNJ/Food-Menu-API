@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,5 +65,16 @@ public class menuItemController {
     @DeleteMapping("/menuItems/{name}")
     public ResponseEntity<Object> deleteMenuItem(@PathVariable String name){
         return service.deleteMenuItem(name);
+    }
+
+
+
+
+
+
+    //To Update a item in menu
+    @PatchMapping("/menuItems/{name}")
+    public ResponseEntity<Object> updateMenuItem(@PathVariable String name, @RequestBody menuItem item){
+        return service.updateMenuItem(name, item);
     }
 }

@@ -145,4 +145,46 @@ public class menuItemService {
         }
     }
 
+
+
+
+
+
+
+
+
+
+    public ResponseEntity<Object> updateMenuItem(String name, menuItem item) {
+        Optional<menuItem> menu = repository.findByName(name);
+
+        if(menu.isPresent()){
+            menuItem menuItem = menu.get();
+
+            if(item.getName() != null)
+                menuItem.setName(item.getName());
+
+            if(item.getPrice() != 0)
+                menuItem.setPrice(item.getPrice());
+
+            if(item.getDescription() != null)
+                menuItem.setDescription(item.getDescription());
+
+            if(item.getCategory() != null)
+                menuItem.setCategory(item.getCategory());
+
+            repository.save(menuItem);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("success", "Item updated in Menu Successfully");
+            map.put("Menu Items", menuItem);
+
+            return new ResponseEntity<Object>(map, HttpStatus.ACCEPTED);
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("error", "Item not found in Menu with the name : "+name);
+
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_MODIFIED);
+        }
+    }
+
 }
